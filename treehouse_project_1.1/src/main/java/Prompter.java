@@ -17,6 +17,7 @@ public class Prompter {
     int amount = promptForAmount(itemName);
     
     jar = new Jar(itemName, amount);
+    jar.fill();
   }
   
   public String getItemName() {
@@ -25,6 +26,10 @@ public class Prompter {
   
   public int getAmount() {
     return jar.getAmount();
+  }
+  
+  public int getActualAmount() {
+    return jar.getActualAmount();
   }
   
   
@@ -76,8 +81,9 @@ public class Prompter {
     return sizeOfJar;
   }
   
-  public boolean isWon(int guess, int actualAmount) {
+  public boolean isWon(int guess) {
     boolean guessIsRight = false;
+    int actualAmount = jar.getActualAmount();
     if (guess == actualAmount) {
       guessIsRight = true;
     } else if (guess > actualAmount) {
